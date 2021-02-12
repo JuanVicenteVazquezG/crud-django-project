@@ -1,7 +1,10 @@
-from django.shortcuts import render, HttpResponse as http
+from django.shortcuts import render
 
 # Create your views here.
 
 def home(request):
-    return http('<h1>At the beguining all was darkness!</h1>')
+    return render(request, 'index.html')
+
+  
+
 

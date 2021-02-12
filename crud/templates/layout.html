@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+
+        {% endblock %} | by Juan Vicente
+    </title>
+</head>
+
+<body>
+    <h1>Authors and Articles CRUD</h1>
+    <ul>
+        <li><a href="/index">Index</a></li>
+        <li>Article<a href="#">List</a><a href="#">Create</a></li>
+        <li>Author<a href="#">List</a><a href="#">Create</a></li>
+    </ul>
+
+    <hr />
+    <div id="content">
+        {% block content %}
+      
+        {% endblock %}
+    </div>
+</body>
+
+</html>
