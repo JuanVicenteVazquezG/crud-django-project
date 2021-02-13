@@ -1,5 +1,13 @@
-body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #181818;
-    color:aliceblue;
+/* General styles */
+/* Reseter */
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif, Arial, Helvetica;
+  text-decoration: none;
+}
+
+body {
+  background-color: #181818;
+  color: aliceblue;
 }

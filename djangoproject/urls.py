@@ -23,5 +23,11 @@ from crud import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', views.home, name="home"),
+    path('articles', views.articles_list, name="articles_list"),
+    path('article/create', views.article_creation, name="article_creation"),
+    path('article/update', views.article_uptdate, name="article_uptdate"),
+    path('authors', views.authors_list, name="authors_list"),
+    path('author/create', views.author_creation, name="author_creation"),
+    path('author/update', views.author_uptdate, name="author_uptdate"),
     path('', views.home, name="home"),
 ]
