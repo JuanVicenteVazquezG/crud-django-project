@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse, redirect
+from crud.models import Article, Author
 
 # Create your views here.
 
