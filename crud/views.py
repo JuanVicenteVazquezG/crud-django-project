@@ -51,8 +51,7 @@ def article_update(request, pk):
         return redirect('articles_list')
 
     else:
-        return HttpResponse(f"Error al actualizar el artículo.") 
-    
+        return HttpResponse(f"Error al actualizar el artículo.")
 
 
 def articles_list(request):
@@ -73,12 +72,43 @@ def author_form_creation(request):
 
 
 def author_creation(request):
-    return render(request, 'author_creation.html')
+    if request.method == 'POST':
+        author = Author(
+            nombre=request.POST['nombre'],
+            email=request.POST['email'],)
+        author.save()
+        return redirect('authors_list')
+    else:
+        return HttpResponse("<h1>Error creating this article please try Again<h1>")
 
 
-def author_uptdate(request):
-    return render(request, 'author_update.html')
+def author_form_update(request, pk):
+    author = Author.objects.get(pk=pk)
+    return render(request, 'author_update.html', {'author': author})
+
+
+def author_update(request, pk):
+    if request.method == 'POST':
+        author = Author.objects.get(pk=pk)
+
+        author.nombre = request.POST['nombre']
+        author.email = request.POST['email']
+        author.save()
+        return redirect('authors_list')
+
+    else:
+        return HttpResponse(f"Error al actualizar el artículo.")
+   
 
 
 def authors_list(request):
-    return render(request, 'authors_list.html')
+    # Read all data Authors from database without sort the data
+    authors = Author.objects.all()
+
+    return render(request, 'authors_list.html', {'authors': authors})
+
+
+def author_delete(request, pk):
+    author = Author.objects.get(pk=pk)
+    author.delete()
+    return redirect('authors_list')

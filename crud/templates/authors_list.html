@@ -1,5 +1,29 @@
 {% extends 'layout.html' %}
-{%block title %} Authors List Form {% endblock %}
+{%block title %} Authors List</h1> {% endblock %}
 {% block content %}
-    <h1>Authors list Form Works</h1>
+
+<div class="row">
+    <h1>Authors List</h1>
+    {% for author in authors %}
+    <div class="col-6">
+        <div class="card my-1">
+            <div class="card-header">
+                <h4 class="card-title">Name: {{author.nombre}} </h4>
+            </div>
+            <div class="card-body">
+                <h5>Email:</h5>
+                <p class="card-text">{{author.email}}</p>
+             <a href="{% url 'author_delete' author.id %}" class="btn btn-danger mx-2" href="#">X</a>
+             <a href="{% url 'author_form_update' author.id %}" class="btn btn-info">Update</a> 
+
+            </div>
+        </div>
+
+    </div>
+    {% empty %}
+
+    <h5>There is no article created yet!</h5>
+
+    {% endfor %}
+</div>
 {% endblock %}

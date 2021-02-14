@@ -1,5 +1,26 @@
 {% extends 'layout.html' %}
 {%block title %} Author Creation Form {% endblock %}
 {% block content %}
-    <h1>Author Creation Form Works</h1>
+<div class="row my-5">
+    <div class="col">
+        <h2>Author Creation Form</h2>
+        <form action="{% url 'author_creation' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Name</label>
+                <input type="text" class="form-control" name="nombre" aria-describedby="nombre"
+                    placeholder="Write your name plase..." required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" name="email" aria-describedby="email"
+                    placeholder="your@mail.here" required>
+                <div id="mail" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+
 {% endblock %}
