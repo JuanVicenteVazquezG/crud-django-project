@@ -1,5 +1,25 @@
 {% extends 'layout.html' %}
-{%block title %} index {% endblock %}
+{%block title %} Home {% endblock %}
 {% block content %}
-    <h1>Index Works</h1>
+<h2>Home</h2>
+<h3>List of the latest articles and Authors creation</h3>
+
+<p>{{article.title}}</p>
+    <h5>Authors: </h5>  
+{% for author in authors %}
+    
+    <p>{{author.nombre}}</p>
+    {% empty %}
+    <h5>There is no authors created yet!</h5>
+{% endfor %}
+    <hr/>
+    <h5>Articles: </h5>
+{% for article in articles %}
+    
+    <p>{{article.title}}</p>
+    <p >{{article.created_at}}</p>
+    {% empty %}
+    <h5>There is no article created yet!</h5>
+{% endfor %} 
+
 {% endblock %}

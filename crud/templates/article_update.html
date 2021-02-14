@@ -1,5 +1,40 @@
 {% extends 'layout.html' %}
 {%block title %} Article Update Form {% endblock %}
 {% block content %}
-    <h1>Article Update Form Works</h1>
+<div class="row mb-5">
+    <div class="col">
+        <h2>Article Update Form</h2>
+        <form action="{% url 'article_update' article.id %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" value="{{article.title}}" aria-describedby="title"
+                    required>
+                <div id="title" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" name="content"  id="content"
+                    placeholder="Leave the content" required>{{article.content}}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="public" class="form-label">It has been published?</label>
+                <select name="public" id="public" class="form-select form-select-lg mb-3"
+                    default="{{article.public}}"" aria-label=" .form-select-lg example" required>
+                    
+                    {% if article.public == True %}
+                    <option value="0">No</option>
+                    <option selected value="1">Yes</option>
+                    {% else %}
+                    <option selected value="0">No</option>
+                    <option value="1">Yes</option>
+                    {% endif %}
+
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div >
+
 {% endblock %}

@@ -3,21 +3,73 @@ from crud.models import Article, Author
 
 # Create your views here.
 
+# Show the las article created and the last Author Created
+
 
 def home(request):
-    return render(request, 'index.html')
+    articles = Article.objects.order_by('-created_at')[:1]
+    authors = Author.objects.order_by('-created_at')[:1]
+    return render(request, 'index.html', {'articles': articles, 'authors': authors})
 
 
-def article_creation(request):
+def article_form_creation(request):
     return render(request, 'article_creation.html')
 
 
-def article_uptdate(request):
-    return render(request, 'article_update.html')
+def article_creation(request):
+    if request.method == 'POST':
+
+        title = request.POST['title']
+        content = request.POST['content']
+        public = request.POST['public']
+
+        article = Article(
+            title=title,
+            content=content,
+            public=public,)
+        article.save()
+        return redirect('articles_list')
+    else:
+        return HttpResponse("<h1>Error creating this article please try Again<h1>")
+
+
+def article_form_update(request, pk):
+
+    article = Article.objects.get(pk=pk)
+    return render(request, 'article_update.html', {'article': article})
+
+
+def article_update(request, pk):
+    if request.method == 'POST':
+        article = Article.objects.get(pk=pk)
+
+        article.title = request.POST['title']
+        article.content = request.POST['content']
+        article.public = request.POST['public']
+
+        article.save()
+        return redirect('articles_list')
+
+    else:
+        return HttpResponse(f"Error al actualizar el artículo.") 
+    
 
 
 def articles_list(request):
-    return render(request, 'articles_list.html')
+    # Read all data articles from database without sort the data
+    articles = Article.objects.all()
+
+    return render(request, 'articles_list.html', {'articles': articles})
+
+
+def article_delete(request, pk):
+    article = Article.objects.get(pk=pk)
+    article.delete()
+    return redirect('articles_list')
+
+
+def author_form_creation(request):
+    return render(request, 'author_creation.html')
 
 
 def author_creation(request):
