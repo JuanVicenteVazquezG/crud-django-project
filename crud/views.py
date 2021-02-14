@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from crud.models import Article, Author
+from django.contrib import messages
 
 # Create your views here.
 
@@ -28,6 +29,8 @@ def article_creation(request):
             content=content,
             public=public,)
         article.save()
+
+       
         return redirect('articles_list')
     else:
         return HttpResponse("<h1>Error creating this article please try Again<h1>")
@@ -51,7 +54,7 @@ def article_update(request, pk):
         return redirect('articles_list')
 
     else:
-        return HttpResponse(f"Error al actualizar el artículo.")
+        return HttpResponse(f"<h1>Error updating this Article</h1>")
 
 
 def articles_list(request):
@@ -97,7 +100,7 @@ def author_update(request, pk):
         return redirect('authors_list')
 
     else:
-        return HttpResponse(f"Error al actualizar el artículo.")
+        return HttpResponse(f"<h1>Error al actualizar el artículo.</h1>")
    
 
 
