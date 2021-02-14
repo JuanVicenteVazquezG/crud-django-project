@@ -9,7 +9,9 @@
 {% for author in authors %}
 
 <p>{{author.nombre}}</p>
-<p>{{author.created_at}}</p>
+<p><strong>{{author.created_at}}</strong></p>
+<a href="{% url 'author_delete' author.id %}" class="btn btn-danger mx-2" href="#">X</a>
+<a href="{% url 'author_form_update' author.id %}" class="btn btn-info">Update</a>
 {% empty %}
 <h5>There is no authors created yet!</h5>
 {% endfor %}
@@ -18,9 +20,11 @@
 {% for article in articles %}
 
 <p>{{article.title}}</p>
-<p>{{article.created_at}}</p>
+<p><strong>{{article.created_at}}</strong></p>
+<a href="{% url 'article_delete' article.id %}" class="btn btn-danger mx-2" href="#">X</a>
+<a href="{% url 'article_form_update' article.id %}" class="btn btn-info">Update</a>
 {% empty %}
 <h5>There is no article created yet!</h5>
 {% endfor %}
-
+<div class="mt-5"/>
 {% endblock %}
